@@ -9,10 +9,11 @@ const Feed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
+    console.log('calling API')
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
       .then(data => setVideos(data.items))
       .catch(err => console.log('API error: ', err))
-  }, [])
+  }, [selectedCategory])
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row"} }} >
@@ -31,7 +32,7 @@ const Feed = () => {
           {selectedCategory} <span style={{ color: '#F31503' }} >videos</span>
         </Typography>
 
-        <Videos videos={videos} />        
+        <Videos videos={videos} cat={selectedCategory} />        
       </Box>
     </Stack>
   )
