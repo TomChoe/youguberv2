@@ -9,7 +9,6 @@ const Feed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    console.log('calling API')
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
       .then(data => setVideos(data.items))
       .catch(err => console.log('API error: ', err))
